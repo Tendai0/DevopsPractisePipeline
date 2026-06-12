@@ -11,4 +11,18 @@ stages:
         echo "Sources: $(Build.SourcesDirectory)"
         echo "Artifacts: $(Build.ArtifactStagingDirectory)"
         ls -R $(System.DefaultWorkingDirectory)
+        java -version
+        node --version
+        python --version       
+        mvn -version
+        ls -R $(Build.ArtifactStagingDirectory)
       displayName: "Display Build Variables"
+
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+         **/*.yaml
+         **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
