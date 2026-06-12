@@ -4,7 +4,7 @@ stages:
   - job: FirstJob
     steps:
     - bash: |
-        echo "Pipeline Variable: $(PipelineVariable)"
+        echo "Pipeline Variable: $(PipelineVariables)"
         echo "Build Number: $(Build.BuildNumber)"
         echo "Build ID: $(Build.BuildId)"
         echo "Branch: $(Build.SourceBranchName)"
