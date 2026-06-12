@@ -10,10 +10,24 @@ stages:
     steps:
     - script: echo Start with stages
       displayName: 'Run a one liner script'     
-- stage: DevDeploy
-  jobs:
   - job: SecondJob
     steps:
+    - script: echo Start with stages
+      displayName: 'Run a one liner script'     
+- stage: DevDeploy
+  jobs:
+  - job: FirstJob2
+    steps:
     - bash: echo build the FisrtJob
-
+  - job: SecondJob2
+    steps:
+    - bash: echo build the FisrtJob
+- stage: ProdDeploy
+  jobs:
+  - job: FirstJob3
+    steps:
+    - bash: echo build the FisrtJob
+  - job: SecondJob3
+    steps:
+    - bash: echo build the FisrtJob
 
