@@ -15,6 +15,7 @@ stages:
     - script: echo Start with stages
       displayName: 'Run a one liner script'     
 - stage: DevDeploy
+  dependsOn: Build
   jobs:
   - job: FirstJob2
     steps:
@@ -22,7 +23,8 @@ stages:
   - job: SecondJob2
     steps:
     - bash: echo build the FisrtJob
-- stage: ProdDeploy
+- stage: ProdDeploy 
+  dependsOn: DevDeploy
   jobs:
   - job: FirstJob3
     steps:
