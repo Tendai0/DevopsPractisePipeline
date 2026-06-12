@@ -1,21 +1,14 @@
-
-trigger:
-- main
-pool:
-  vmImage: ubuntu-latest
-
-
 stages:
 - stage: Build
   jobs:
   - job: FirstJob
     steps:
-    - script: echo Start with stages
-    - bash: echo$(PipelineVariable)
-    - bash: echo$(Build.BuildNumber)
-    - bash: echo$(Build.BuildId)
-    - bash: echo$(Build.SourcebranchName)
-    - bash: echo$(Build.SourceDirectory)
-    - bash: ls-R $(System.DefaultWorkingDirectory)
-    - bash: echo$(Build.ArtifactStagingDirectory)
-
+    - bash: |
+        echo "Pipeline Variable: $(PipelineVariable)"
+        echo "Build Number: $(Build.BuildNumber)"
+        echo "Build ID: $(Build.BuildId)"
+        echo "Branch: $(Build.SourceBranchName)"
+        echo "Sources: $(Build.SourcesDirectory)"
+        echo "Artifacts: $(Build.ArtifactStagingDirectory)"
+        ls -R $(System.DefaultWorkingDirectory)
+      displayName: "Display Build Variables"
