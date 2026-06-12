@@ -18,12 +18,6 @@ stages:
     - bash: echo$(Build.SourceDirectory)
     - bash: ls-R $(System.DefaultWorkingDirectory)
     - bash: echo$(Build.ArtifactStagingDirectory)
-      displayName: 'Run a one liner script'     
-  # - job: SecondJob
-  #   steps:
-  #   - script: echo Start with stages
-  #     displayName: 'Run a one liner script'       
-
 
 # - stage: DevDeploy
 #   variables: 
