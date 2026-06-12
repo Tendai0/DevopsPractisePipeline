@@ -3,6 +3,8 @@ trigger:
 - main
 pool:
   vmImage: ubuntu-latest
+
+
 stages:
 - stage: Build
   jobs:
@@ -10,30 +12,38 @@ stages:
     steps:
     - script: echo Start with stages
     - bash: echo$(PipelineVariable)
+    - bash: echo$(Build.BuildNumber)
+    - bash: echo$(Build.BuildId)
+    - bash: echo$(Build.SourcebranchName)
+    - bash: echo$(Build.SourceDirectory)
+    - bash: ls-R $(System.DefaultWorkingDirectory)
+    - bash: echo$(Build.ArtifactStagingDirectory)
       displayName: 'Run a one liner script'     
-  - job: SecondJob
-    steps:
-    - script: echo Start with stages
-      displayName: 'Run a one liner script'     
-- stage: DevDeploy
-  variables: 
-    environment: Dev
-  dependsOn: Build
-  jobs:
-  - job: FirstJob2
-    steps:
-    - bash: echo build the FisrtJob
-  - job: SecondJob2
-    steps:
-    - bash: echo build the FisrtJob
-    - bash: echo$(environment)Deployjob
-- stage: ProdDeploy 
-  dependsOn: DevDeploy
-  jobs:
-  - job: FirstJob3
-    steps:
-    - bash: echo build the FisrtJob
-  - job: SecondJob3
-    steps:
-    - bash: echo build the FisrtJob
+  # - job: SecondJob
+  #   steps:
+  #   - script: echo Start with stages
+  #     displayName: 'Run a one liner script'       
+
+
+# - stage: DevDeploy
+#   variables: 
+#     environment: Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: FirstJob2
+#     steps:
+#     - bash: echo build the FisrtJob
+#   - job: SecondJob2
+#     steps:
+#     - bash: echo build the FisrtJob
+#     - bash: echo$(environment)Deployjob
+# - stage: ProdDeploy 
+#   dependsOn: DevDeploy
+#   jobs:
+#   - job: FirstJob3
+#     steps:
+#     - bash: echo build the FisrtJob
+#   - job: SecondJob3
+#     steps:
+#     - bash: echo build the FisrtJob
 
